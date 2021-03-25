@@ -4,7 +4,8 @@
   "description": "Egy weboldal ahol létrehozhatunk és megoszthatunk yu-gi-oh kártyapaklikat.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.ts"
+    "start": "nodemon src/index.ts",
+    "db:create": "mikro-orm schema:drop -r && mikro-orm schema:create -r"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,20 @@
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "@mikro-orm/cli": "^4.5.0",
+    "@mikro-orm/core": "^4.5.0",
+    "@mikro-orm/sqlite": "^4.5.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
   }
 }

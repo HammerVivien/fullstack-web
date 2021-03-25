@@ -19,3 +19,10 @@ Egy weboldal ahol létrehozhatunk és megoszthatunk yu-gi-oh kártyapaklikat.
  - Vendég: Hozzáfér a paklikhoz, újat létrehozni nem tud
  - Felhasználó: Vendég szerepkörén túl létre tud hozni új paklit, sajátját szerkeszteni, és másokét hozzáadhatja a kedvencekhez
  - Admin: Felhasználó szerepkörén túl hozzá tud adni új kártyákat.
+
+## Végpontok
+
+ - `GET /card` Kilistázza az összes kártyát
+ - `GET /card/:id` Visszaad 1 kártyát
+ - `GET /deck` Kilistázza a megosztott paklikat
+ - `POST /deck` Létrehoz egy új paklit

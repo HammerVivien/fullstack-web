@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
@@ -21,7 +24,7 @@
     // "removeComments": true,                      /* Do not emit comments to output. */
     // "noEmit": true,                              /* Do not emit outputs. */
     // "importHelpers": true,                       /* Import emit helpers from 'tslib'. */
-    // "downlevelIteration": true,                  /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
+    "downlevelIteration": true,                  /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
     // "isolatedModules": true,                     /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
 
     /* Strict Type-Checking Options */
@@ -63,6 +66,8 @@
     /* Experimental Options */
     // "experimentalDecorators": true,              /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,               /* Enables experimental support for emitting type metadata for decorators. */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
 
     /* Advanced Options */
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
