@@ -21,8 +21,4 @@ export class Card {
     @Enum()
     subType!: CardSubType
 
-    @Property()
-    createdAt: Date = new Date();
-    @Property({onUpdate: () => new Date()})
-    modifiedAt: Date = new Date();
 }

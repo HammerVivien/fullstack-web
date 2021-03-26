@@ -23,6 +23,24 @@ Egy weboldal ahol létrehozhatunk és megoszthatunk yu-gi-oh kártyapaklikat.
 ## Végpontok
 
  - `GET /card` Kilistázza az összes kártyát
+ - `GET /card/search?params` Kilistázza a kártyákat keresési feltételnek megfelelően
  - `GET /card/:id` Visszaad 1 kártyát
- - `GET /deck` Kilistázza a megosztott paklikat
+ - `GET /deck` Kilistázza a megosztott paklit
+ - `GET /deck/:id` Visszaad 1 paklit (Csak akkor ha saját vagy meg van osztva)
+ - `POST /user/login` Belép egy felhasználó
+ - `POST /user/register` Regisztrál egy felhasználót
+
+### Authorizált
+
+Felhasználó:
  - `POST /deck` Létrehoz egy új paklit
+ - `DELETE /deck/:id` Töröl egy paklit
+ - `PUT /deck/:id` Módosít egy paklit
+ - `POST /deck/favorite/:id` Hozzáad egy paklit a kedvencekhez
+ - `POST /deck/unfavorite/:id` Levesz egy paklit a kedvencekből
+
+Admin:
+ - `POST /card` létrehoz egy kártyát
+ - `DELETE /card/:id` töröl egy kártyát
+ - `PUT /card/:id` Módosít egy kártyát
+ - Felhasználó végpontjai
