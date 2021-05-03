@@ -2,7 +2,7 @@ import { Entity, ManyToOne, PrimaryKeyType, Property } from "@mikro-orm/core";
 import { Card } from "./card";
 import { Deck } from "./deck";
 
-@Entity()
+@Entity({tableName: "deck_card_pair"})
 export class DeckCardPair {
 
     @ManyToOne(() => Card, {primary: true})

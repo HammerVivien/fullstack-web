@@ -1,0 +1,2 @@
+insert into user (username, password, role) values ('kaiba', 'ffba85d26a539162765898ef9ef935d16476f06f37447e9d0ae5fcbd413930112da785efd9afc69c352c5e4dfebe1f1ecd9d24ba11344b43654c6ddae3467940', 'ADMIN');
+insert into user (username, password, role) values ('user2', '0fae730680e983e1427829d9055e8c0031be9fdd9f9106dfdc6db5116a0bbfdbe6e99fbed5b32cc2d83ea2dd76010bef9e1312e259d58b9df7881817622f2cf3', 'USER');

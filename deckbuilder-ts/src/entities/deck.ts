@@ -1,6 +1,6 @@
 import { Collection, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
 import { Card } from "./card";
-import { DeckCardPair as DeckCard } from "./deckCards";
+import { DeckCardPair } from "./deckCards";
 import { User } from "./user";
 
 @Entity()
@@ -23,8 +23,8 @@ export class Deck {
     @Property({onUpdate: () => new Date()})
     modifiedAt: Date = new Date();
     
-    @OneToMany(() => DeckCard, pair => pair.deck)
-    cards = new Collection<DeckCard>(this);
+    @OneToMany(() => DeckCardPair, pair => pair.deck, {orphanRemoval: true})
+    cards = new Collection<DeckCardPair>(this);
 
     @ManyToOne(() => User)
     user!: User;

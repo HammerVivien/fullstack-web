@@ -12,8 +12,13 @@ userRouter
     next();
 })
 .post('/register', async (req, res) => {
-    const user = new User();
-    
+    const username = req.body.username;
+    let user = await req.userRepository!.findOne({ username });
+    if (user) {
+        return res.sendStatus(409);
+    }
+
+    user = new User();
     const wrappedUser = wrap(user);
     wrappedUser.assign(req.body);
     
@@ -25,7 +30,7 @@ userRouter
     res.send(user);
 })
 .post('/login', async (req, res) => {
-    const user = await req.userRepository!.findOne({username: req.body.username});
+    const user = await req.userRepository!.findOne({username: req.body.username}, ["decks", "favorites"]) as User;
     if (!user) {
         res.sendStatus(404);
         return;
@@ -37,5 +42,9 @@ userRouter
         return;
     }
 
-    res.send({user, token: generateJwt(user)});
+    const u: any = user;
+    u.decks = user.decks.getIdentifiers();
+    u.favorites = user.favorites.getIdentifiers();
+
+    res.send({u, token: generateJwt(user)});
 });

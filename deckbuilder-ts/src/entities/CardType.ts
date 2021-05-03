@@ -10,3 +10,8 @@ export enum CardSubType {
 
     NormalTrap = "Normal Trap", ContinuousTrap = "Continuous Trap", CounterTrap = "Counter Trap"
 }
+
+export enum Attribute {
+    Light = "Light", Dark = "Dark", Water = "Water", 
+    Fire = "Fire", Earth = "Earth", Wind = "Wind"
+}

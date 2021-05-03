@@ -9,6 +9,7 @@ declare global {
         interface Request {
             orm: MikroORM<IDatabaseDriver>;
             cardRepository?: EntityRepository<Card>;
+            monsterRepository?: EntityRepository<Monster>;
             deckRepository?: EntityRepository<Deck>;
             userRepository?: EntityRepository<User>;
         }

@@ -3,7 +3,6 @@ import { UserRole } from "../entities/user";
 
 export function authorize(role: UserRole): RequestHandler {
     return (req, res, next) => {
-        console.log(req.user);
         
         if (req.user?.role === role || req.user?.role === UserRole.Admin) {
             return next();
