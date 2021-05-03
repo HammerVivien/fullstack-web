@@ -1,0 +1,14 @@
+<h1>Cards</h1>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let card of cards">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ card.name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>{{ card.description }}</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<app-card-editor></app-card-editor>
