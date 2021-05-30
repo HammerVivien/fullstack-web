@@ -7,8 +7,32 @@
         {{ card.name }}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p>{{ card.description }}</p>
+
+      <mat-list-item>
+        {{ card.subType }}
+      </mat-list-item>
+
+      <mat-list-item>
+        <div *ngIf="card.type == 'Monster'">
+          <table [width]="'20%'">
+            <tr>
+              <td>{{card.attribute}} </td>
+              <td>{{ card.race }}</td>
+            </tr>
+            <tr>
+              <td colspan="2">Level {{card.level}}</td>
+            </tr>
+            <tr>
+              <td>ATK {{card.attack}}</td>
+              <td>DEF {{card.defense}}</td>
+            </tr>
+          </table>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item>{{ card.description }}</mat-list-item>
+
   </mat-expansion-panel>
 </mat-accordion>
 
-<app-card-editor></app-card-editor>
+<!-- app-card-editor></app-card-editor -->

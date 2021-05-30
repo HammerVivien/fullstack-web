@@ -2,7 +2,9 @@
   <button (click)="sidenav.toggle()" mat-icon-button>
     <mat-icon>menu</mat-icon>
   </button>
-  <span>My App</span>
+  <span>Yu-gi-oh Deckbuilder</span>
+  <span class="spacer"></span>
+  <button *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side">

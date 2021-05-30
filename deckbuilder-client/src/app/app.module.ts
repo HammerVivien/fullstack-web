@@ -16,7 +16,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardsComponent } from './cards/cards.component';
 import { CardEditorComponent } from './card-editor/card-editor.component';
-import { ErrorsPipe } from './errors.pipe';
+import { ErrorsPipe } from './core/errors.pipe';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/auth.interceptor';
+import { RegisterComponent } from './register/register.component';
+import { DecksComponent } from './decks/decks.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,9 @@ import { ErrorsPipe } from './errors.pipe';
     CardsComponent,
     CardEditorComponent,
     ErrorsPipe,
+    LoginComponent,
+    RegisterComponent,
+    DecksComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +47,14 @@ import { ErrorsPipe } from './errors.pipe';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
+    HttpClientModule,
   ],
   exports: [],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

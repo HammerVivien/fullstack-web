@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CardService } from '../card-service.service';
+import { CardService } from '../core/card.service';
 import { Card } from '../domain/card';
 
 @Component({
@@ -15,8 +15,8 @@ export class CardsComponent implements OnInit {
     private cardService: CardService
     ) { }
 
-  ngOnInit(): void {
-    this.cards = this.cardService.getCards();
+  async ngOnInit(): Promise<void> {
+    this.cards = await this.cardService.getCards();
   }
 
 }

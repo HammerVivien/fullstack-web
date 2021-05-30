@@ -7,7 +7,7 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { CardService } from '../card-service.service';
+import { CardService } from '../core/card.service';
 
 
 @Component({
