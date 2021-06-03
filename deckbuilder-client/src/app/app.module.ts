@@ -8,12 +8,12 @@ import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatSelectModule} from '@angular/material/select';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardsComponent } from './cards/cards.component';
 import { CardEditorComponent } from './card-editor/card-editor.component';
 import { ErrorsPipe } from './core/errors.pipe';
@@ -22,6 +22,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/auth.interceptor';
 import { RegisterComponent } from './register/register.component';
 import { DecksComponent } from './decks/decks.component';
+
+
 
 @NgModule({
   declarations: [
@@ -48,6 +50,11 @@ import { DecksComponent } from './decks/decks.component';
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
+    MatSelectModule,
+    FormsModule,
+    MatSelectModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   exports: [],
   providers: [{

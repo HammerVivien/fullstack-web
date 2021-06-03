@@ -25,7 +25,6 @@ cardRouter
         }
         ret.push(card);
     }
-    console.log(ret);
     res.send(ret);
 })
 .get('/search', async (req, res) => {
@@ -39,7 +38,6 @@ cardRouter
         }
         ret.push(card);
     }
-    console.log(ret);
     res.send(ret);
 })
 .get('/:id', async (req, res) => {
@@ -58,6 +56,7 @@ cardRouter
 })
 .use(passport.authenticate('jwt', {session: false}))
 .post('', authorize(UserRole.Admin), async (req, res) => {
+    
     const card = new Card();
     const wrappedCard = wrap(card);
     wrappedCard.assign(req.body);

@@ -1,3 +1,12 @@
+
+<mat-expansion-panel *ngIf="isAdmin">
+  <mat-expansion-panel-header>
+    <mat-panel-title>Create Card</mat-panel-title>
+  </mat-expansion-panel-header>
+  <app-card-editor></app-card-editor>
+</mat-expansion-panel>
+<br>
+
 <h1>Cards</h1>
 
 <mat-accordion>
@@ -34,5 +43,3 @@
 
   </mat-expansion-panel>
 </mat-accordion>
-
-<!-- app-card-editor></app-card-editor -->

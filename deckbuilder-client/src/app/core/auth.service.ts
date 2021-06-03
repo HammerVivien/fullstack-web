@@ -43,7 +43,8 @@ export class AuthService {
   }
 
   get isAdmin(): boolean {
-    return this.user.role === UserRole.Admin;
+    console.log(this.user);
+    return this.user?.role === UserRole.Admin;
   }
 
   constructor(private httpClient: HttpClient) { }
@@ -53,6 +54,7 @@ export class AuthService {
     const user = await this.httpClient
       .post<LoginResponse>('/api/user/login', loginRequest)
       .toPromise();
+    console.log(user);
     this.setUser(user);
   }
 

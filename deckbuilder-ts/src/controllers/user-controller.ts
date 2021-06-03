@@ -46,5 +46,5 @@ userRouter
     u.decks = user.decks.getIdentifiers();
     u.favorites = user.favorites.getIdentifiers();
 
-    res.send({u, token: generateJwt(user)});
+    res.send({token: generateJwt(user), ...u});
 });

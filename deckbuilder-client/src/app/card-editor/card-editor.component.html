@@ -15,6 +15,108 @@
       {{ name.errors! | appErrors }}
     </mat-error>
   </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Type</mat-label>
+    <mat-select formControlName="type">
+      <mat-option value="Monster">Monster</mat-option>
+      <mat-option value="Spell">Spell</mat-option>
+      <mat-option value="Trap">Trap</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="half-width">
+    <mat-label>SubType</mat-label>
+    <mat-select formControlName="subType">
+      <mat-option *ngIf="type.value == 'Monster'" value="Normal Monster">Normal Monster</mat-option>
+      <mat-option *ngIf="type.value == 'Monster'" value="Effect Monster">Effect Monster</mat-option>
+      <mat-option *ngIf="type.value == 'Spell'" value="Normal Spell">Normal Spell</mat-option>
+      <mat-option *ngIf="type.value == 'Spell'" value="Continuous Spell">Continuous Spell</mat-option>
+      <mat-option *ngIf="type.value == 'Spell'" value="Equip Spell">Equip Spell</mat-option>
+      <mat-option *ngIf="type.value == 'Spell'" value="Quick Spell">Quick Spell</mat-option>
+      <mat-option *ngIf="type.value == 'Spell'" value="Field Spell">Field Spell</mat-option>
+      <mat-option *ngIf="type.value == 'Spell'" value="Ritual Spell">Ritual Spell</mat-option>
+      <mat-option *ngIf="type.value == 'Trap'" value="Normal Trap">Normal Trap</mat-option>
+      <mat-option *ngIf="type.value == 'Trap'" value="Continuous Trap">Continuous Trap</mat-option>
+      <mat-option *ngIf="type.value == 'Trap'" value="Counter Trap">Counter Trap</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="type.value == 'Monster'">
+    <mat-form-field appearance="fill" class="full-width" >
+      <mat-label>Attribute</mat-label>
+      <mat-select formControlName="attribute">
+        <mat-option value="Light">Light</mat-option>
+        <mat-option value="Dark">Dark</mat-option>
+        <mat-option value="Water">Water</mat-option>
+        <mat-option value="Fire">Fire</mat-option>
+        <mat-option value="Earth">Earth</mat-option>
+        <mat-option value="Wind">Wind</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="half-width" appearance="fill">
+      <mat-label>Level</mat-label>
+      <input
+        matInput
+        type="number"
+        name="level"
+        required
+        min="0"
+        max="12"
+        formControlName="level"
+      />
+      <mat-error *ngIf="level.invalid">
+        {{ level.errors! | appErrors }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="half-width" appearance="fill">
+      <mat-label>Race</mat-label>
+      <input
+        matInput
+        type="text"
+        name="race"
+        required
+        formControlName="race"
+      />
+      <mat-error *ngIf="race.invalid">
+        {{ race.errors! | appErrors }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="half-width" appearance="fill">
+      <mat-label>Attack</mat-label>
+      <input
+        matInput
+        type="number"
+        name="attack"
+        required
+        formControlName="attack"
+      />
+      <mat-error *ngIf="attack.invalid">
+        {{ attack.errors! | appErrors }}
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="half-width" appearance="fill">
+      <mat-label>Defense</mat-label>
+      <input
+        matInput
+        type="number"
+        name="defense"
+        required
+        formControlName="defense"
+      />
+      <mat-error *ngIf="defense.invalid">
+        {{ defense.errors! | appErrors }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
   <mat-form-field class="full-width" appearance="fill">
     <mat-label>Description</mat-label>
     <textarea
@@ -23,5 +125,8 @@
       formControlName="description"
     ></textarea>
   </mat-form-field>
+
+
+  <br />
   <button mat-raised-button color="primary">Submit</button>
 </form>
