@@ -1,5 +1,6 @@
 <mat-nav-list>
   <a mat-list-item [routerLink]="['cards']">Cards</a>
-  <a mat-list-item [routerLink]="['login']">Login</a>
-  <a mat-list-item [routerLink]="['register']">Register</a>
+  <a mat-list-item [routerLink]="['decks']">Decks</a>
+  <a *ngIf="!isLoggedIn" mat-list-item [routerLink]="['login']">Login</a>
+  <a *ngIf="!isLoggedIn" mat-list-item [routerLink]="['register']">Register</a>
 </mat-nav-list>

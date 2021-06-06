@@ -8,7 +8,7 @@ export interface Deck {
     isPublic: boolean;
     createdAt: string;
     modifiedAt: string;
-    cards: Card[];
-    user: User;
-    favorites: User[];
+    cards: number[];
+    user: number;
+    favorites: number[];
 }

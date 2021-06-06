@@ -22,7 +22,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/auth.interceptor';
 import { RegisterComponent } from './register/register.component';
 import { DecksComponent } from './decks/decks.component';
-
+import { DeckEditorComponent } from './deck-editor/deck-editor.component';
+import { DeckDetailsComponent } from './deck-details/deck-details.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CardPickerComponent } from './card-picker/card-picker.component';
 
 
 @NgModule({
@@ -35,6 +39,9 @@ import { DecksComponent } from './decks/decks.component';
     LoginComponent,
     RegisterComponent,
     DecksComponent,
+    DeckEditorComponent,
+    DeckDetailsComponent,
+    CardPickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,9 @@ import { DecksComponent } from './decks/decks.component';
     FormsModule,
     MatSelectModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatCheckboxModule
   ],
   exports: [],
   providers: [{

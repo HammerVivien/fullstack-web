@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, Optional, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -9,7 +9,9 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CardService } from '../core/card.service';
+import { Card } from '../domain/card';
 
 
 @Component({
@@ -31,7 +33,16 @@ export class CardEditorComponent implements OnInit {
     attribute: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private cardService: CardService) {}
+  get isNewCard(): boolean {
+    return this.cardToEdit == null;
+  }
+
+  constructor(
+    private fb: FormBuilder,
+    private cardService: CardService,
+    @Optional() public dialogRef?: MatDialogRef<CardEditorComponent>,
+    @Inject(MAT_DIALOG_DATA) @Optional() private cardToEdit?: Card
+  ) {}
 
   get name(): FormControl {
     return this.cardForm.get('name') as FormControl;
@@ -59,15 +70,23 @@ export class CardEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-  }
-
-  ngOnChanges(): void {
-
+    if (this.cardToEdit) {
+      this.cardForm.reset({
+        name: this.cardToEdit.name,
+        description: this.cardToEdit.description,
+        type: this.cardToEdit.type,
+        subType: this.cardToEdit.subType,
+        attribute: this.cardToEdit.attribute,
+        attack: this.cardToEdit.attack,
+        defense: this.cardToEdit.defense,
+        level: this.cardToEdit.level,
+        race: this.cardToEdit.race,
+      })
+    }
   }
 
   async submit(): Promise<void> {
-    console.log(this.cardForm.valid);
+    this.cardForm.markAllAsTouched();
 
     const nonMonsterValid = this.type.value != "Monster" && this.name.valid;
     if (this.cardForm.valid || nonMonsterValid) {
@@ -78,7 +97,11 @@ export class CardEditorComponent implements OnInit {
         this.race.setValue(null);
         this.attribute.setValue(null);
       }
-      await this.cardService.createCard(this.cardForm.value);
+      if (this.cardToEdit) {
+        await this.cardService.editCard(this.cardToEdit, this.cardForm.value);
+      } else {
+        await this.cardService.createCard(this.cardForm.value);
+      }
       window.location.reload();
     }
   }

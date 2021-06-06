@@ -1,11 +1,17 @@
-<h1>Cards</h1>
+<h1>{{deck.name}}</h1>
+<div>{{deck.description}}</div>
 
-<div *ngIf="isAdmin">
-  <button mat-flat-button  color="primary" (click)="openCardDialog(null)">New Card</button>
+<div >
+  <button *ngIf="isLoggedIn"  mat-mini-fab color="{{ isFavorited ? 'accent' : 'warn'}}" (click)="favorite()">
+    <mat-icon>{{ isFavorited ? "favorite_border" : "favorite" }}</mat-icon>
+  </button>
+  <span>Favorites: {{deck.favorites.length}}</span>
 </div>
 
+
+<h2>Cards</h2>
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let card of (cards | async)">
+  <mat-expansion-panel *ngFor="let card of deckCards">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{ card.name }}

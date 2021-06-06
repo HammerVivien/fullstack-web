@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Add card</h1>
+
+<div>
+  <mat-selection-list [(ngModel)]="card" (selectionChange)="onSelectValueChange()" [multiple]="false">
+    <mat-list-option *ngFor="let card of cards" [value]="card">
+      {{card.name}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>

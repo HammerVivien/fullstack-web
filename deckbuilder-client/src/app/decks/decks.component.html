@@ -1,1 +1,43 @@
-<p>deck works!</p>
+<div *ngIf="isLoggedIn">
+  <h1>User Decks</h1>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let deck of userDecks">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ deck.name }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <p>{{deck.description}}</p>
+
+      <button mat-flat-button color="primary" [routerLink]="['/', 'decks', deck.id]">
+        Details
+      </button>
+      <button mat-flat-button color="primary" [routerLink]="['/', 'decks', deck.id, 'edit']">
+        Edit
+      </button>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <button mat-flat-button color="primary" [routerLink]="['/', 'decks','new', 'edit']">New Deck</button>
+</div>
+
+
+<h1>Decks</h1>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let deck of decks">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ deck.name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p>{{deck.description}}</p>
+
+    <button mat-flat-button color="primary" [routerLink]="['/', 'decks', deck.id]">
+      Details
+    </button>
+  </mat-expansion-panel>
+</mat-accordion>

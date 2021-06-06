@@ -86,12 +86,22 @@ cardRouter
     res.sendStatus(200);
 })
 .put('/:id', authorize(UserRole.Admin), async (req, res) => {
-    const card = await req.cardRepository!.findOne({ id: req.params.id });
+    const card = await req.cardRepository!.findOne({ id: req.params.id }, ["monster"]) as Card;
     if (!card) {
         res.sendStatus(404);
     }
     const wrappedCard = wrap(card);
     wrappedCard.assign(req.body);
+    
+    let monster : Monster | null = null;
+    if (card.type == CardType.Monster) {
+        const monsterRepository = req.orm.em.getRepository(Monster);
+        monster = await monsterRepository.findOne({ id: card.monster?.id }) as Monster;
+        const wrappedMonster = wrap(monster);
+        wrappedMonster.assign(req.body);
+
+        await monsterRepository.persistAndFlush(monster);
+    }
 
     await req.cardRepository!.persistAndFlush(card);
 

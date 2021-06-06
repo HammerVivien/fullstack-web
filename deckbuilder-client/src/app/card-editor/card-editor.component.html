@@ -1,4 +1,4 @@
-<h1>Create Card</h1>
+<h1 mat-dialog-title>{{ isNewCard ? "Edit Card" : "Create Card"}}</h1>
 
 <form [formGroup]="cardForm" (ngSubmit)="submit()">
   <mat-form-field class="full-width" appearance="fill">

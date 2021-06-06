@@ -1,0 +1,77 @@
+<h1>{{deckToEdit ? "Edit Deck" : "Create Deck"}}</h1>
+<form [formGroup]="deckForm">
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        type="text"
+        name="name"
+        required
+        minlength="2"
+        formControlName="name"
+      />
+      <mat-error *ngIf="name.invalid">
+        {{ name.errors! | appErrors }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        name="description"
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-checkbox
+      matInput
+      type="checkbox"
+      name="isPublic"
+      color="primary"
+      formControlName="isPublic" class="full-width"
+    >Public</mat-checkbox>
+
+    <button mat-raised-button color="primary" (click)="openCardDialog()">Add Card</button>
+    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+    <button mat-raised-button color="warn" (click)="deleteDeck()" *ngIf="deckToEdit">Delete Deck</button>
+
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let card of deckCards; let i = index" [attr.data-index]="i">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ card.name }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+          <mat-list-item>
+            {{ card.subType }}
+          </mat-list-item>
+
+          <mat-list-item>
+            <div *ngIf="card.type == 'Monster'">
+              <table [width]="'20%'">
+                <tr>
+                  <td>{{card.attribute}} </td>
+                  <td>{{ card.race }}</td>
+                </tr>
+                <tr>
+                  <td colspan="2">Level {{card.level}}</td>
+                </tr>
+                <tr>
+                  <td>ATK {{card.attack}}</td>
+                  <td>DEF {{card.defense}}</td>
+                </tr>
+              </table>
+            </div>
+          </mat-list-item>
+
+          <mat-list-item>{{ card.description }}</mat-list-item>
+
+          <br>
+          <button mat-raised-button color="warn" (click)="removeCard(i)">Remove</button>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+</form>
